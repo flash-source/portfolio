@@ -96,7 +96,7 @@ export const hackathons: HackathonItem[] = [
     tech: ["Next.js", "TypeScript", "Tailwind CSS"],
     links: [
       { label: "GitHub", href: "https://github.com/flash-source/leaklogic-ai" },
-      { label: "Live", href: "https://leaklogicai-backend.vercel.app" },
+      { label: "Live", href: "https://radiant-cobbler-afcae6.netlify.app/" },
     ],
   },
   {
