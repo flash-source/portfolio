@@ -37,7 +37,7 @@ export default function Experience() {
               </ul>
               <div className="mt-4 flex flex-wrap gap-2">
                 {item.tech.map((t) => (
-                  <TechBadge key={t} tech={t} size="sm" />
+                  <TechBadge key={t} tech={t} size="sm" tone="accent" />
                 ))}
               </div>
             </div>

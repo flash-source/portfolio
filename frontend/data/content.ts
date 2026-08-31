@@ -4,7 +4,7 @@ export const profile = {
   tagline:
     "I build and ship full-stack products end to end — pixel editors with custom colour-quantization engines, real-time systems built from scratch, and whatever a project needs next.",
   location: "Karnal, Haryana, India",
-  timeZone: "IST",
+  timeZone: "Asia/Kolkata",
   email: "nehagoyal5557@gmail.com",
   github: "https://github.com/flash-source",
   githubUsername: "flash-source",
@@ -99,20 +99,20 @@ export const hackathons: HackathonItem[] = [
       { label: "Live", href: "https://leaklogicai-backend.vercel.app" },
     ],
   },
-    {
+  {
     rank: "03",
     name: "ScrapeForensics",
-    event: " WeMakeDevs Into the Scrape-Verse", 
-    period: "Aug 2026", 
+    event: "WeMakeDevs Into the Scrape-Verse",
+    period: "Aug 2026",
     description:
       "Incident response for self-healing web scrapers — detects breakage, diagnoses it, triggers Bright Data's heal, and verifies the fix actually worked. Built for WeMakeDevs Scrape-Verse.",
-    tech: ["Bright Data", "Node.js", "TypeScript", "HTML"], // add the rest of your actual stack (Node/Python/etc.)
+    tech: ["Bright Data", "Node.js", "TypeScript", "HTML"],
     links: [{ label: "GitHub", href: "https://github.com/flash-source/ScrapeForensics" }],
   },
   {
     rank: "04",
     name: "Day One",
-    event: "AI Factory - Native.builder Hackathon", 
+    event: "AI Factory - Native.builder Hackathon",
     period: "Aug 2026",
     description:
       "AI-powered startup validator that simulates a C-suite boardroom debate. Six specialized agents (Research, Product, Finance, Legal, Marketing, CEO) analyze, challenge, and refine ideas through adversarial collaboration, delivering comprehensive company dossiers in minutes.",
@@ -142,7 +142,8 @@ export type ProjectItem = {
   period: string;
   description: string;
   tech: string[];
-  category: "Fun Project" | "Game" | "Other";
+  category: "Fun Project" | "Game" | "Other" | "Hackathon";
+  image?: string; // path under /public, e.g. "/projects/pixel-it.png"
   links?: { label: string; href: string }[];
 };
 
@@ -150,6 +151,7 @@ export const projectCategories: ProjectItem["category"][] = [
   "Fun Project",
   "Game",
   "Other",
+  "Hackathon",
 ];
 
 export const projects: ProjectItem[] = [
@@ -177,7 +179,6 @@ export const projects: ProjectItem[] = [
       { label: "Live", href: "https://flash-source.github.io/vibeSentinel/" },
     ],
   },
-
   {
     name: "AppForge",
     period: "May 2026",

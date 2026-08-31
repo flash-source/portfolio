@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import ProjectsClient from "./ProjectsClient";
@@ -17,7 +18,9 @@ export default function ProjectsPage() {
         <h1 className="mb-10 font-display text-3xl font-semibold text-ink sm:text-4xl">
           Things I&apos;ve shipped
         </h1>
-        <ProjectsClient />
+        <Suspense fallback={null}>
+          <ProjectsClient />
+        </Suspense>
       </div>
       <Footer />
     </main>

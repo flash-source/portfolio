@@ -8,8 +8,8 @@ import AnchorLink from "./AnchorLink";
 import { profile } from "@/data/content";
 
 const links = [
+  { href: "/#top", label: "Home" },
   { href: "/projects", label: "Projects" },
-  { href: "/#hackathons", label: "Hackathons" },
   { href: "/#experience", label: "Experience" },
   { href: "/blog", label: "Blog" },
 ];

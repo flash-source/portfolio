@@ -1,16 +1,37 @@
 "use client";
 
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { projects, projectCategories, type ProjectItem } from "@/data/content";
+import { projects, hackathons, projectCategories, type ProjectItem } from "@/data/content";
 import ProjectCard from "@/components/ProjectCard";
 
 type Filter = "All" | ProjectItem["category"];
 
+// Hackathon builds are stored separately (they carry rank/event/result,
+// which the dedicated Hackathons section still shows in full) but should
+// also be browsable here as regular project cards, tagged "Hackathon".
+const hackathonsAsProjects: ProjectItem[] = hackathons.map((h) => ({
+  name: h.name,
+  period: h.period,
+  description: h.description,
+  tech: h.tech,
+  category: "Hackathon",
+  links: h.links,
+}));
+
+const allItems: ProjectItem[] = [...projects, ...hackathonsAsProjects];
+
+function isFilter(value: string | null): value is Filter {
+  return value === "All" || (projectCategories as string[]).includes(value ?? "");
+}
+
 export default function ProjectsClient() {
-  const [filter, setFilter] = useState<Filter>("All");
+  const searchParams = useSearchParams();
+  const requested = searchParams.get("category");
+  const [filter, setFilter] = useState<Filter>(isFilter(requested) ? requested : "All");
   const tabs: Filter[] = ["All", ...projectCategories];
-  const visible = projects.filter((p) => filter === "All" || p.category === filter);
+  const visible = allItems.filter((p) => filter === "All" || p.category === filter);
 
   return (
     <div>
