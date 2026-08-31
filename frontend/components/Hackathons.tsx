@@ -18,7 +18,7 @@ export default function Hackathons() {
             <motion.div
               whileHover={{ y: -4 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
-              className="flex h-full flex-col rounded-sm border border-line/40 bg-card p-6 transition-[colors,box-shadow] duration-300 hover:border-accent/60 hover:shadow-[0_18px_36px_-20px_rgb(var(--accent)/0.35)]"
+              className="flex h-full flex-col rounded-xl border border-line/40 bg-card p-6 transition-[colors,box-shadow] duration-300 hover:border-accent/60 hover:shadow-[0_18px_36px_-20px_rgb(var(--accent)/0.35)]"
             >
               <span className="mb-4 font-mono text-xs text-line/70">
                 {h.rank}
@@ -35,7 +35,7 @@ export default function Hackathons() {
                   <LuTrophy className="h-3 w-3" /> {h.result}
                 </p>
               )}
-              <p className="flex-1 text-[15px] leading-relaxed text-prose">
+              <p className="mb-4 flex-1 line-clamp-4 text-[15px] leading-relaxed text-prose">
                 {h.description}
               </p>
               <p className="mt-4 font-mono text-xs text-ink-soft">

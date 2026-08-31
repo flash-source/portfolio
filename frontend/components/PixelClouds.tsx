@@ -2,7 +2,6 @@
 
 import PixelCloud from "./PixelCloud";
 
-// Three clouds, staggered sizes/speeds/delays so they don't move in lockstep.
 const CLOUDS = [
   { size: 5, top: "6%", duration: 55, delay: 0, className: "text-ink-soft/45" },
   { size: 4, top: "24%", duration: 72, delay: 9, className: "text-ink-soft/30" },

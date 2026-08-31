@@ -1,20 +1,24 @@
 import { LuGithub, LuMail } from "react-icons/lu";
 import { FaXTwitter } from "react-icons/fa6";
 import { profile, education } from "@/data/content";
-import Avatar from "./Avatar";
-import PixelGrassDivider from "./PixelGrassDivider";
+import DinoGame from "./DinoGame";
+import LiveStatus from "./LiveStatus";
 
 export default function Footer() {
+  const year = new Date().getFullYear();
+
   return (
     <footer className="border-t border-line/30">
-      <PixelGrassDivider />
+      <DinoGame />
       <div className="mx-auto max-w-wide px-6 py-12">
         <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
-          <div className="flex items-center gap-3">
-            <Avatar size={32} />
+          <div className="space-y-2">
             <p className="font-mono text-sm text-ink-soft">
-              Built by {profile.name} &middot; Next.js + TypeScript
+              Designed &amp; Developed by{" "}
+              <span className="font-semibold text-ink">{profile.name}</span>
             </p>
+            <p className="font-mono text-xs text-ink-soft/60">&copy; {year} All rights reserved.</p>
+            <LiveStatus location={profile.location} timeZone={profile.timeZone} />
           </div>
           <div className="flex gap-3">
             <a
@@ -44,9 +48,6 @@ export default function Footer() {
             </a>
           </div>
         </div>
-        <p className="mt-6 font-mono text-xs text-ink-soft/70">
-          {education.degree} &middot; {education.school} &middot; {education.period}
-        </p>
       </div>
     </footer>
   );

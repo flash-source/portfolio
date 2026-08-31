@@ -1,6 +1,3 @@
-// A small hand-placed pixel grid forming a blocky 8-bit cloud silhouette —
-// same "grid of squares" technique as the Avatar/Nav pixel monogram used
-// to use, just repurposed here for a dino-runner-style sky.
 const CLOUD_GRID: number[][] = [
   [0, 0, 1, 1, 0, 0, 0, 0],
   [0, 1, 1, 1, 1, 1, 0, 0],

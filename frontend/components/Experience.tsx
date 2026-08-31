@@ -2,6 +2,7 @@ import { LuBriefcase } from "react-icons/lu";
 import { experience } from "@/data/content";
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
+import { TechBadge } from "./TechIcon";
 
 export default function Experience() {
   return (
@@ -34,9 +35,11 @@ export default function Experience() {
                   </li>
                 ))}
               </ul>
-              <p className="mt-4 font-mono text-xs text-ink-soft">
-                {item.tech.join(" · ")}
-              </p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {item.tech.map((t) => (
+                  <TechBadge key={t} tech={t} size="sm" />
+                ))}
+              </div>
             </div>
           </Reveal>
         ))}

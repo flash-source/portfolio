@@ -4,6 +4,7 @@ export const profile = {
   tagline:
     "I build and ship full-stack products end to end — pixel editors with custom colour-quantization engines, real-time systems built from scratch, and whatever a project needs next.",
   location: "Karnal, Haryana, India",
+  timeZone: "IST",
   email: "nehagoyal5557@gmail.com",
   github: "https://github.com/flash-source",
   githubUsername: "flash-source",
@@ -13,7 +14,7 @@ export const profile = {
 export const proofStats = [
   { value: "Top 10", detail: "of 7,000+ at a national hackathon" },
   { value: "4", detail: "full-stack products shipped solo" },
-  { value: "3", detail: "hackathons entered" },
+  { value: "5", detail: "hackathons entered" },
 ];
 
 export const education = {
@@ -75,12 +76,15 @@ export const hackathons: HackathonItem[] = [
     rank: "01",
     name: "Prompt Edit",
     event: "The UI Strikes Back — WeMakeDevs × Tambo AI",
-    period: "Jan 2026",
+    period: "Feb 2026",
     result: "Top 10 of 7,000+",
     description:
-      "An AI-assisted image editor that recommends the exact tools, values, and steps to use next — keeping every edit fully human-controlled via Tambo AI and Toast UI.",
+      "AI‑assisted image editor that recommends the exact tools, values, and steps you should use — while keeping every edit fully human‑controlled. Powered by Tambo AI and Toast UI, it blends a conversational mentor with real, manual editing controls to create a smooth, guided editing workflow",
     tech: ["React", "TypeScript", "Tailwind CSS", "Generative UI", "Tambo API"],
-    links: [{ label: "GitHub", href: "https://github.com/flash-source" }],
+    links: [
+      { label: "GitHub", href: "https://github.com/flash-source/prompt-edit" },
+      { label: "Live", href: "https://prompt-edit-studio.vercel.app" },
+    ],
   },
   {
     rank: "02",
@@ -88,18 +92,48 @@ export const hackathons: HackathonItem[] = [
     event: "AMD Developer Hackathon: ACT II — lablab.ai",
     period: "Jul 2026",
     description:
-      "Joined a team mid-hackathon to build a profit-leak detection tool for small businesses; shipped Next.js/TypeScript frontend fixes across chart accuracy and layout.",
+      "AI-powered analysis that identifies hidden profit leaks in your business data. Upload your sales, refunds, supplier, and inventory data to discover where revenue is slipping through the cracks.",
     tech: ["Next.js", "TypeScript", "Tailwind CSS"],
+    links: [
+      { label: "GitHub", href: "https://github.com/flash-source/leaklogic-ai" },
+      { label: "Live", href: "https://leaklogicai-backend.vercel.app" },
+    ],
+  },
+    {
+    rank: "03",
+    name: "ScrapeForensics",
+    event: " WeMakeDevs Into the Scrape-Verse", 
+    period: "Aug 2026", 
+    description:
+      "Incident response for self-healing web scrapers — detects breakage, diagnoses it, triggers Bright Data's heal, and verifies the fix actually worked. Built for WeMakeDevs Scrape-Verse.",
+    tech: ["Bright Data", "Node.js", "TypeScript", "HTML"], // add the rest of your actual stack (Node/Python/etc.)
+    links: [{ label: "GitHub", href: "https://github.com/flash-source/ScrapeForensics" }],
   },
   {
-    rank: "03",
-    name: "Smart Civica",
-    event: "Smart India Hackathon 2025",
-    period: "2025",
-    result: "State-level qualifier",
+    rank: "04",
+    name: "Day One",
+    event: "AI Factory - Native.builder Hackathon", 
+    period: "Aug 2026",
     description:
-      "An AI-powered civic issue reporting platform — citizens report issues with images and location, auto-classified across 10+ categories via CNN with spam/fraud detection.",
-    tech: ["React", "Node.js", "MongoDB", "TensorFlow"],
+      "AI-powered startup validator that simulates a C-suite boardroom debate. Six specialized agents (Research, Product, Finance, Legal, Marketing, CEO) analyze, challenge, and refine ideas through adversarial collaboration, delivering comprehensive company dossiers in minutes.",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "WebSocket"],
+    links: [
+      { label: "GitHub", href: "https://github.com/flash-source/DayOne" },
+      { label: "Live", href: "https://ei61x8qbbc82gwybasmag5f1n.nativelyai.app/" },
+    ],
+  },
+  {
+    rank: "05",
+    name: "AutoFix Swarm",
+    event: "OpenAI Build Week",
+    period: "Jul 2026",
+    description:
+      "An autonomous, explainable bug-detection and remediation pipeline — three specialized agents that scan a codebase, patch real issues with Codex, verify the fix against tests, and generate a plain-English explanation a human can trust and merge.",
+    tech: ["FastAPI", "Next.js", "Python", "TypeScript", "Docker"],
+    links: [
+      { label: "GitHub", href: "https://github.com/flash-source/autofix-swarm" },
+      { label: "Live", href: "https://autofix-awarm.netlify.app/" },
+    ],
   },
 ];
 
@@ -121,25 +155,38 @@ export const projectCategories: ProjectItem["category"][] = [
 export const projects: ProjectItem[] = [
   {
     name: "Pixel-it",
-    period: "Feb 2026",
+    period: "May 2026",
     description:
       "A full-stack pixel art creation platform — draw manually on a live canvas, convert any image into true pixel art with k-means palette reduction (8–32 colours), or build a pixel avatar from 50+ layered sprite options.",
     tech: ["Next.js 14", "TypeScript", "Tailwind CSS", "Prisma", "Postgres", "NextAuth"],
     category: "Fun Project",
     links: [
-      { label: "GitHub", href: "https://github.com/flash-source" },
+      { label: "GitHub", href: "https://github.com/flash-source/pixel-it" },
       { label: "Live", href: "https://pixel-it-seven.vercel.app" },
     ],
   },
   {
-    name: "AppForge",
-    period: "2026",
+    name: "Vibe Sentinel",
+    period: "Apr 2026",
     description:
-      "A metadata-driven app runtime — turns JSON config into a working application: generated UI, backend APIs, database schema, and workflow logic.",
+      "A 10-level turn-based dungeon roguelike where you fight escalating shadow beasts across 10 visually distinct biomes — with endless mode, badges, and a portal that drops you straight into the next Vibe Jam game.",
+    tech: ["Next.js 14", "TypeScript", "Tailwind CSS", "Prisma", "Postgres", "NextAuth"],
+    category: "Game",
+    links: [
+      { label: "GitHub", href: "https://github.com/flash-source/vibeSentinel" },
+      { label: "Live", href: "https://flash-source.github.io/vibeSentinel/" },
+    ],
+  },
+
+  {
+    name: "AppForge",
+    period: "May 2026",
+    description:
+      "a metadata-driven application runtime. The core idea is simple: you define your app as a JSON config, and AppForge generates the frontend UI, backend APIs, database structure, and workflow logic — automatically.",
     tech: ["Next.js 14", "Prisma", "NextAuth", "Gemini AI"],
     category: "Other",
     links: [
-      { label: "GitHub", href: "https://github.com/flash-source" },
+      { label: "GitHub", href: "https://github.com/flash-source/Appforge" },
       { label: "Live", href: "https://app-forge-blue.vercel.app" },
     ],
   },
@@ -150,11 +197,11 @@ export const projects: ProjectItem[] = [
       "A second-brain knowledge management platform — store, tag, and share links, tweets, and other content with persistent history and real-time collaboration.",
     tech: ["React", "TypeScript", "Tailwind CSS", "Node.js", "MongoDB", "Express", "JWT"],
     category: "Other",
-    links: [{ label: "GitHub", href: "https://github.com/flash-source" }],
+    links: [{ label: "GitHub", href: "https://github.com/flash-source/brainly" }],
   },
   {
     name: "Chat Room",
-    period: "2026",
+    period: "Feb 2026",
     description:
       "A real-time chat room app built to learn WebSockets from scratch — multiple users across separate browser sessions join and message within the same room via a shared room ID.",
     tech: ["TypeScript", "Node.js", "WebSocket"],
