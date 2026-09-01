@@ -8,9 +8,6 @@ import ProjectCard from "@/components/ProjectCard";
 
 type Filter = "All" | ProjectItem["category"];
 
-// Hackathon builds are stored separately (they carry rank/event/result,
-// which the dedicated Hackathons section still shows in full) but should
-// also be browsable here as regular project cards, tagged "Hackathon".
 const hackathonsAsProjects: ProjectItem[] = hackathons.map((h) => ({
   name: h.name,
   period: h.period,
@@ -18,6 +15,7 @@ const hackathonsAsProjects: ProjectItem[] = hackathons.map((h) => ({
   tech: h.tech,
   category: "Hackathon",
   links: h.links,
+  images: h.images,
 }));
 
 const allItems: ProjectItem[] = [...projects, ...hackathonsAsProjects];

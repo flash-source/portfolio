@@ -12,18 +12,20 @@
   --ink-soft: 75 74 74;
   --prose: 51 51 51;
   --line: 138 92 4;
+  --portrait-accent: 138 92 4;
 }
 
 .dark {
-  --bg: 19 18 14;
-  --card: 28 26 20;
-  --card-alt: 34 31 24;
+  --bg: 42 32 26;
+  --card: 56 43 35;
+  --card-alt: 68 53 43;
   --accent: 217 164 65;
   --accent-soft: 217 164 65;
-  --ink: 245 241 230;
-  --ink-soft: 182 176 160;
-  --prose: 214 209 196;
+  --ink: 240 227 210;
+  --ink-soft: 196 176 155;
+  --prose: 224 208 188;
   --line: 217 164 65;
+  --portrait-accent: 196 168 120;
 }
 
 html {

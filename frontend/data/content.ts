@@ -69,6 +69,8 @@ export type HackathonItem = {
   description: string;
   tech: string[];
   links?: { label: string; href: string }[];
+  /** Ordered for the card slider — landing/title shot first, functional screenshot(s) after. */
+  images?: string[];
 };
 
 export const hackathons: HackathonItem[] = [
@@ -85,6 +87,7 @@ export const hackathons: HackathonItem[] = [
       { label: "GitHub", href: "https://github.com/flash-source/prompt-edit" },
       { label: "Live", href: "https://prompt-edit-studio.vercel.app" },
     ],
+    images: ["/projects/prompt-edit.png", "/projects/prompt-edit2.png"],
   },
   {
     rank: "02",
@@ -98,6 +101,7 @@ export const hackathons: HackathonItem[] = [
       { label: "GitHub", href: "https://github.com/flash-source/leaklogic-ai" },
       { label: "Live", href: "https://radiant-cobbler-afcae6.netlify.app/" },
     ],
+    images: ["/projects/leaklogic-ai.png", "/projects/leaklogic-ai2.png"],
   },
   {
     rank: "03",
@@ -121,6 +125,7 @@ export const hackathons: HackathonItem[] = [
       { label: "GitHub", href: "https://github.com/flash-source/DayOne" },
       { label: "Live", href: "https://ei61x8qbbc82gwybasmag5f1n.nativelyai.app/" },
     ],
+    images: ["/projects/dayone.png"],
   },
   {
     rank: "05",
@@ -134,6 +139,7 @@ export const hackathons: HackathonItem[] = [
       { label: "GitHub", href: "https://github.com/flash-source/autofix-swarm" },
       { label: "Live", href: "https://autofix-awarm.netlify.app/" },
     ],
+    images: ["/projects/autofix-swarm.png"],
   },
 ];
 
@@ -143,7 +149,8 @@ export type ProjectItem = {
   description: string;
   tech: string[];
   category: "Fun Project" | "Game" | "Other" | "Hackathon";
-  image?: string; // path under /public, e.g. "/projects/pixel-it.png"
+  /** Ordered for the card slider — landing/title shot first, functional screenshot(s) after. */
+  images?: string[];
   links?: { label: string; href: string }[];
 };
 
@@ -166,6 +173,7 @@ export const projects: ProjectItem[] = [
       { label: "GitHub", href: "https://github.com/flash-source/pixel-it" },
       { label: "Live", href: "https://pixel-it-seven.vercel.app" },
     ],
+    images: ["/projects/pixel-it.png", "/projects/pixel-it2.png"],
   },
   {
     name: "Vibe Sentinel",
@@ -178,6 +186,7 @@ export const projects: ProjectItem[] = [
       { label: "GitHub", href: "https://github.com/flash-source/vibeSentinel" },
       { label: "Live", href: "https://flash-source.github.io/vibeSentinel/" },
     ],
+    images: ["/projects/vibe-sentinel.png", "/projects/vibe-sentinel2.png"],
   },
   {
     name: "AppForge",
@@ -190,6 +199,7 @@ export const projects: ProjectItem[] = [
       { label: "GitHub", href: "https://github.com/flash-source/Appforge" },
       { label: "Live", href: "https://app-forge-blue.vercel.app" },
     ],
+    images: ["/projects/appforge.png", "/projects/appforge2.png"],
   },
   {
     name: "Brainly",

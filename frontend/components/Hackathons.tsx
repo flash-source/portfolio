@@ -8,6 +8,7 @@ import { hackathons, achievements } from "@/data/content";
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
 import { TechBadge } from "./TechIcon";
+import ImageSlider from "./ImageSlider";
 
 const LINK_ICON: Record<string, IconType> = { GitHub: LuGithub, Live: LuGlobe };
 
@@ -26,52 +27,57 @@ export default function Hackathons() {
             <motion.div
               whileHover={{ y: -4 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
-              className="flex h-full flex-col rounded-xl border border-line/40 bg-card p-6 transition-[colors,box-shadow] duration-300 hover:border-accent/60 hover:shadow-[0_18px_36px_-20px_rgb(var(--accent)/0.35)]"
+              className="flex h-full flex-col overflow-hidden rounded-xl border border-line/40 bg-card transition-[colors,box-shadow] duration-300 hover:border-accent/60 hover:shadow-[0_18px_36px_-20px_rgb(var(--accent)/0.35)]"
             >
-              <span className="mb-4 font-mono text-xs text-line/70">{h.rank}</span>
-
-              <div className="mb-1 flex items-start justify-between gap-3">
-                <div>
-                  <h3 className="font-display text-lg font-semibold text-ink">{h.name}</h3>
-                  <span className="font-mono text-xs text-ink-soft">{h.period}</span>
-                </div>
-                {h.links && (
-                  <div className="flex shrink-0 gap-2">
-                    {h.links.map((link) => {
-                      const Icon = LINK_ICON[link.label] ?? LuGlobe;
-                      return (
-                        <a
-                          key={link.href}
-                          href={link.href}
-                          target="_blank"
-                          rel="noreferrer"
-                          aria-label={link.label}
-                          className="flex h-8 w-8 items-center justify-center rounded-full border border-line/40 text-ink-soft transition-colors hover:border-accent hover:text-accent"
-                        >
-                          <Icon className="h-3.5 w-3.5" />
-                        </a>
-                      );
-                    })}
-                  </div>
-                )}
-              </div>
-
-              <p className="mb-3 font-mono text-xs text-ink-soft">{h.event}</p>
-
-              {h.result && (
-                <p className="mb-3 inline-flex w-fit items-center gap-1.5 rounded-full bg-accent-soft/25 px-2.5 py-1 font-mono text-xs text-accent">
-                  <LuTrophy className="h-3 w-3" /> {h.result}
-                </p>
+              {h.images && h.images.length > 0 && (
+                <ImageSlider images={h.images} alt={h.name} />
               )}
+              <div className="flex flex-1 flex-col p-6">
+                <span className="mb-4 font-mono text-xs text-line/70">{h.rank}</span>
 
-              <p className="mb-4 flex-1 line-clamp-4 text-[15px] leading-relaxed text-prose">
-                {h.description}
-              </p>
+                <div className="mb-1 flex items-start justify-between gap-3">
+                  <div>
+                    <h3 className="font-display text-lg font-semibold text-ink">{h.name}</h3>
+                    <span className="font-mono text-xs text-ink-soft">{h.period}</span>
+                  </div>
+                  {h.links && (
+                    <div className="flex shrink-0 gap-2">
+                      {h.links.map((link) => {
+                        const Icon = LINK_ICON[link.label] ?? LuGlobe;
+                        return (
+                          <a
+                            key={link.href}
+                            href={link.href}
+                            target="_blank"
+                            rel="noreferrer"
+                            aria-label={link.label}
+                            className="flex h-8 w-8 items-center justify-center rounded-full border border-line/40 text-ink-soft transition-colors hover:border-accent hover:text-accent"
+                          >
+                            <Icon className="h-3.5 w-3.5" />
+                          </a>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
 
-              <div className="flex flex-wrap gap-2">
-                {h.tech.map((t) => (
-                  <TechBadge key={t} tech={t} />
-                ))}
+                <p className="mb-3 font-mono text-xs text-ink-soft">{h.event}</p>
+
+                {h.result && (
+                  <p className="mb-3 inline-flex w-fit items-center gap-1.5 rounded-full bg-accent-soft/25 px-2.5 py-1 font-mono text-xs text-accent">
+                    <LuTrophy className="h-3 w-3" /> {h.result}
+                  </p>
+                )}
+
+                <p className="mb-4 flex-1 line-clamp-4 text-[15px] leading-relaxed text-prose">
+                  {h.description}
+                </p>
+
+                <div className="flex flex-wrap gap-2">
+                  {h.tech.map((t) => (
+                    <TechBadge key={t} tech={t} />
+                  ))}
+                </div>
               </div>
             </motion.div>
           </Reveal>

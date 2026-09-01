@@ -1,11 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { LuGithub, LuGlobe } from "react-icons/lu";
 import type { IconType } from "react-icons";
 import type { ProjectItem } from "@/data/content";
 import { TechBadge } from "./TechIcon";
+import ImageSlider from "./ImageSlider";
 
 const LINK_ICON: Record<string, IconType> = { GitHub: LuGithub, Live: LuGlobe };
 
@@ -17,17 +17,7 @@ export default function ProjectCard({ project }: { project: ProjectItem }) {
       transition={{ duration: 0.25, ease: "easeOut" }}
       className="group flex h-full flex-col overflow-hidden rounded-xl border border-line/40 bg-card transition-[colors,box-shadow] duration-300 hover:border-accent/60 hover:shadow-[0_18px_36px_-20px_rgb(var(--accent)/0.35)]"
     >
-      {p.image && (
-        <div className="relative aspect-video w-full overflow-hidden bg-line/10">
-          <Image
-            src={p.image}
-            alt={`${p.name} preview`}
-            fill
-            sizes="(min-width: 640px) 50vw, 100vw"
-            className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-          />
-        </div>
-      )}
+      {p.images && p.images.length > 0 && <ImageSlider images={p.images} alt={p.name} />}
 
       <div className="flex flex-1 flex-col p-6">
         <div className="mb-2 flex items-start justify-between gap-3">

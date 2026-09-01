@@ -18,6 +18,11 @@ import {
 import { LuKeyRound, LuZap } from "react-icons/lu";
 import type { IconType } from "react-icons";
 
+// Shared by ProjectCard and Experience so the tech → logo mapping only
+// lives in one place. Matched by exact string, so keep this in sync with
+// however tech names are spelled in data/content.ts. Anything not listed
+// here still renders fine — TechBadge falls back to a small text pill —
+// so a missing mapping never silently drops a technology from the list.
 export const TECH_ICON: Record<string, IconType> = {
   "Next.js 14": SiNextdotjs,
   "Next.js": SiNextdotjs,
@@ -65,12 +70,19 @@ export function TechBadge({
     tone === "accent" ? "text-accent" : "text-ink-soft transition-colors group-hover:text-accent";
 
   return (
-    <span
-      title={tech}
-      aria-label={tech}
-      className={`flex ${box} items-center justify-center rounded-lg border border-line/30 bg-bg/40 ${iconColor}`}
-    >
-      <Icon aria-hidden="true" className={iconSize} />
+    <span className="group/tech relative inline-flex">
+      <span
+        aria-label={tech}
+        className={`flex ${box} items-center justify-center rounded-lg border border-line/30 bg-bg/40 ${iconColor}`}
+      >
+        <Icon aria-hidden="true" className={iconSize} />
+      </span>
+      <span
+        role="tooltip"
+        className="pointer-events-none absolute bottom-full left-1/2 z-20 mb-2 -translate-x-1/2 translate-y-1 whitespace-nowrap rounded-md border border-line/40 bg-card px-2 py-1 font-mono text-[11px] text-ink opacity-0 shadow-[0_8px_20px_-8px_rgb(var(--ink)/0.3)] transition-all duration-150 ease-out group-hover/tech:translate-y-0 group-hover/tech:opacity-100"
+      >
+        {tech}
+      </span>
     </span>
   );
 }

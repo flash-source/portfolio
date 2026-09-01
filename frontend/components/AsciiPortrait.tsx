@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 // Module-level cache so re-mounts (theme toggle, route back) skip reprocessing
 const memoryCache: Record<number, RawParticle[]> = {};
 
-type RawParticle = { x: number; y: number; char: string; brightness: number };
+type RawParticle = { x: number; y: number; char: string; alpha: number };
 type Particle = {
   x: number;
   y: number;
@@ -15,7 +15,7 @@ type Particle = {
   vy: number;
   char: string;
   fontSize: number;
-  brightness: number;
+  baseAlpha: number;
   currentAlpha: number;
   delay: number;
   shimmer: number;
@@ -28,33 +28,12 @@ const calculateSize = (containerWidth: number) => {
 
 const CHARS = " .:-=+*#%@".split("");
 
-// Light mode reads the general --accent CSS var directly (it already looks
-// right there and stays in sync if the palette changes later). Dark mode
-// uses its own dedicated, dimmer/desaturated colour instead of the general
-// dark accent — the same bright gold that works well as a small button
-// accent "blooms" and flattens tonal detail when it fills this much of the
-// screen at high alpha, so dark mode also compresses the alpha range to
-// keep the densest areas from overpowering the lighter detail.
-const ASCII_THEME = {
-  light: { alphaMin: 0.5, alphaMax: 1.0 },
-  dark: { color: "196,152,88", alphaMin: 0.3, alphaMax: 0.78 },
-};
-
-function readAsciiTheme() {
-  if (typeof window === "undefined") {
-    return { color: "138,92,4", ...ASCII_THEME.light };
-  }
-  const isDark = document.documentElement.classList.contains("dark");
-  if (isDark) {
-    return { ...ASCII_THEME.dark };
-  }
+function readPortraitColor() {
+  if (typeof window === "undefined") return "138,92,4";
   const raw = getComputedStyle(document.documentElement)
-    .getPropertyValue("--accent")
+    .getPropertyValue("--portrait-accent")
     .trim();
-  return {
-    color: raw ? raw.replace(/\s+/g, ",") : "138,92,4",
-    ...ASCII_THEME.light,
-  };
+  return raw ? raw.replace(/\s+/g, ",") : "138,92,4";
 }
 
 export default function AsciiPortrait({
@@ -69,16 +48,19 @@ export default function AsciiPortrait({
   const mouseTargetRef = useRef({ x: -1000, y: -1000 });
   const particlesRef = useRef<Particle[]>([]);
   const startTimeRef = useRef<number | null>(null);
-  const themeRef = useRef(readAsciiTheme());
+  const accentRef = useRef("138,92,4");
+  const isDarkRef = useRef(false);
   const [size] = useState(() => calculateSize(containerSize));
   const [dataReady, setDataReady] = useState(false);
 
-  // track theme so colour AND alpha range follow light/dark without a remount
+  // track theme so the ASCII colour follows light/dark without a remount
   useEffect(() => {
-    themeRef.current = readAsciiTheme();
-    const observer = new MutationObserver(() => {
-      themeRef.current = readAsciiTheme();
-    });
+    const sync = () => {
+      accentRef.current = readPortraitColor();
+      isDarkRef.current = document.documentElement.classList.contains("dark");
+    };
+    sync();
+    const observer = new MutationObserver(sync);
     observer.observe(document.documentElement, {
       attributes: true,
       attributeFilter: ["class"],
@@ -97,13 +79,17 @@ export default function AsciiPortrait({
       vy: 0,
       char: p.char,
       fontSize,
-      brightness: p.brightness,
+      baseAlpha: p.alpha,
       currentAlpha: 0,
       delay: Math.random() * 0.4,
       shimmer: Math.random() * Math.PI * 2,
     }));
   };
 
+  // Our source is an opaque JPEG (no alpha channel), so instead of using
+  // transparency to isolate the subject (like a cutout PNG would), we
+  // sample the corner as the background colour and skip pixels close to
+  // it — same isolated-subject effect, adapted for a flat photo.
   const processImage = (img: HTMLImageElement, targetSize: number) => {
     const offscreen = document.createElement("canvas");
     const offCtx = offscreen.getContext("2d", { willReadFrequently: true })!;
@@ -141,7 +127,7 @@ export default function AsciiPortrait({
             x: Number(x.toFixed(1)),
             y: Number(y.toFixed(1)),
             char: CHARS[charIndex],
-            brightness,
+            alpha: Number((0.5 + brightness * 0.5).toFixed(2)),
           });
         }
       }
@@ -205,19 +191,18 @@ export default function AsciiPortrait({
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
 
-      const theme = themeRef.current;
+      const accent = accentRef.current;
 
       particles.forEach((p) => {
         const particleTime = elapsed - p.delay;
         if (particleTime < 0) return;
 
-        const baseAlpha = theme.alphaMin + p.brightness * (theme.alphaMax - theme.alphaMin);
         const fadeProgress = Math.min(particleTime / 1.5, 1);
         const easedFade = 1 - Math.pow(1 - fadeProgress, 2);
 
         const isActive = mouse.active || particleTime < 3.0;
         const shimmerVal = isActive ? Math.sin(elapsed * 2 + p.shimmer) * 0.1 : 0;
-        p.currentAlpha = Math.max(0, baseAlpha * easedFade + shimmerVal);
+        p.currentAlpha = Math.max(0, p.baseAlpha * easedFade + shimmerVal);
 
         const moveProgress = Math.min(particleTime / 2.5, 1);
         const easedMove = 1 - Math.pow(1 - moveProgress, 3);
@@ -261,7 +246,16 @@ export default function AsciiPortrait({
         p.x += p.vx;
         p.y += p.vy;
 
-        ctx.fillStyle = `rgba(${theme.color},${p.currentAlpha})`;
+        let alpha = p.currentAlpha;
+        if (isDarkRef.current) {
+          // A light, saturated ink glows almost uniformly against near-black
+          // at these alpha levels, so structural strokes (glasses, features)
+          // stop reading as distinct from the softer background texture.
+          // Raising alpha to a power >1 leaves strong strokes nearly intact
+          // while pushing faint ones further down, restoring that contrast.
+          alpha = Math.pow(Math.max(0, Math.min(1, alpha)), 1.6);
+        }
+        ctx.fillStyle = `rgba(${accent},${alpha})`;
         ctx.fillText(p.char, p.x, p.y);
       });
     };
