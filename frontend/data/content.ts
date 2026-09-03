@@ -2,7 +2,7 @@ export const profile = {
   name: "Neha Goyal",
   role: "Full-Stack Developer",
   tagline:
-    "I build and ship full-stack products end to end — pixel editors with custom colour-quantization engines, real-time systems built from scratch, and whatever a project needs next.",
+    "Hey, I'm Neha, a full stack developer who loves building clean, modern websites and apps where design, functionality, and even the smallest details matter, with a focus on making products that are both practical and visually satisfying.",
   location: "Karnal, Haryana, India",
   timeZone: "Asia/Kolkata",
   email: "nehagoyal5557@gmail.com",
@@ -112,6 +112,7 @@ export const hackathons: HackathonItem[] = [
       "Incident response for self-healing web scrapers — detects breakage, diagnoses it, triggers Bright Data's heal, and verifies the fix actually worked. Built for WeMakeDevs Scrape-Verse.",
     tech: ["Bright Data", "Node.js", "TypeScript", "HTML"],
     links: [{ label: "GitHub", href: "https://github.com/flash-source/ScrapeForensics" }],
+    images: ["/projects/scrape-forensics.png"],
   },
   {
     rank: "04",
@@ -148,8 +149,7 @@ export type ProjectItem = {
   period: string;
   description: string;
   tech: string[];
-  category: "Fun Project" | "Game" | "Other" | "Hackathon";
-  /** Ordered for the card slider — landing/title shot first, functional screenshot(s) after. */
+  category: "Fun Project" | "Game" | "Hackathon" | "Other";
   images?: string[];
   links?: { label: string; href: string }[];
 };
@@ -209,6 +209,7 @@ export const projects: ProjectItem[] = [
     tech: ["React", "TypeScript", "Tailwind CSS", "Node.js", "MongoDB", "Express", "JWT"],
     category: "Other",
     links: [{ label: "GitHub", href: "https://github.com/flash-source/brainly" }],
+    images: ["/projects/brainly.png"],
   },
   {
     name: "Chat Room",
@@ -218,6 +219,7 @@ export const projects: ProjectItem[] = [
     tech: ["TypeScript", "Node.js", "WebSocket"],
     category: "Fun Project",
     links: [{ label: "GitHub", href: "https://github.com/flash-source/chat-room" }],
+    images: ["/projects/chat-room.png"],
   },
 ];
 
