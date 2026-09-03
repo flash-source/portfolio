@@ -1,6 +1,15 @@
+"use client";
+
+import dynamic from "next/dynamic";
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
-import GitHubActivity from "./GitHubActivity";
+
+const GitHubActivity = dynamic(() => import("./GitHubActivity"), {
+  ssr: false,
+  loading: () => (
+    <div className="h-[150px] w-full animate-pulse rounded-md bg-card-alt/60" />
+  ),
+});
 
 export default function GitHubActivitySection() {
   return (

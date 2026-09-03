@@ -22,10 +22,29 @@ const body = IBM_Plex_Sans({
   variable: "--font-body",
 });
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const TITLE = "Neha Goyal — Full-Stack Developer";
+const DESCRIPTION =
+  "I build full-stack products from the ground up — pixel editors, real-time systems, whatever a project calls for.";
+
 export const metadata: Metadata = {
-  title: "Neha Goyal — Full-Stack Developer",
-  description:
-    "I build and ship full-stack products end to end — pixel editors, real-time systems, and whatever a project needs next.",
+  metadataBase: new URL(SITE_URL),
+  title: TITLE,
+  description: DESCRIPTION,
+  openGraph: {
+    title: TITLE,
+    description: DESCRIPTION,
+    url: SITE_URL,
+    siteName: "Neha Goyal",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+    creator: "@Nehagoyal1407",
+  },
 };
 
 export default function RootLayout({

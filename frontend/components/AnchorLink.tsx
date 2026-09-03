@@ -6,10 +6,12 @@ export default function AnchorLink({
   href,
   children,
   className,
+  onClick,
 }: {
   href: string;
   children: React.ReactNode;
   className?: string;
+  onClick?: () => void;
 }) {
   const lenis = useLenis();
   const hash = href.includes("#") ? href.slice(href.indexOf("#")) : null;
@@ -19,9 +21,10 @@ export default function AnchorLink({
       href={href}
       className={className}
       onClick={(e) => {
-        if (!hash) return; // plain page link, let Next.js/browser handle it
+        onClick?.();
+        if (!hash) return; 
         const target = document.querySelector(hash);
-        if (!target) return; // not on this page — let the browser navigate there
+        if (!target) return; 
         e.preventDefault();
         if (lenis) {
           lenis.scrollTo(target as HTMLElement, { offset: -80, duration: 1.2 });
