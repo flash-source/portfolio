@@ -5,6 +5,7 @@ import GitHubActivitySection from "@/components/GitHubActivitySection";
 import Projects from "@/components/Projects";
 import Hackathons from "@/components/Hackathons";
 import Experience from "@/components/Experience";
+import QuotesSection from "@/components/QuotesSection";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -12,11 +13,15 @@ export default function Home() {
     <main className="min-h-screen bg-bg">
       <Nav />
       <Hero />
-      <TechStack />
-      <GitHubActivitySection />
+      
       <Projects />
-      <Hackathons />
       <Experience />
+      <TechStack />
+      <Hackathons />
+      <GitHubActivitySection />
+      
+      
+      <QuotesSection />
       <Footer />
     </main>
   );

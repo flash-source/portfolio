@@ -155,10 +155,10 @@ export type ProjectItem = {
 };
 
 export const projectCategories: ProjectItem["category"][] = [
+  "Hackathon",
   "Fun Project",
   "Game",
   "Other",
-  "Hackathon",
 ];
 
 export const projects: ProjectItem[] = [
@@ -224,5 +224,5 @@ export const projects: ProjectItem[] = [
 ];
 
 export const achievements = [
-  "Selected among top participants for the Solana Fellowship Program conducted by Superdev India",
+  "Selected among top participants for the Solana Fellowship Program conducted by Superteam India",
 ];

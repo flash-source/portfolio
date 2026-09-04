@@ -5,7 +5,6 @@ import { LuGithub, LuMail } from "react-icons/lu";
 import { FaXTwitter } from "react-icons/fa6";
 import AsciiPortrait from "./AsciiPortrait";
 import AnchorLink from "./AnchorLink";
-import PixelClouds from "./PixelClouds";
 import { profile, proofStats } from "@/data/content";
 
 const container = {
@@ -28,7 +27,6 @@ export default function Hero() {
       id="top"
       className="relative mx-auto max-w-wide overflow-hidden px-6 pb-16 pt-16 md:pt-20"
     >
-      <PixelClouds />
       <motion.div
         variants={container}
         initial="hidden"
